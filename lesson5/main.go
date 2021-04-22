@@ -56,16 +56,14 @@ func triangle(convertedNum int) {
 
 func diamond(convertedNum int)  {
 	fmt.Println("다이아몬드 패턴입니다.")
-	for i := 1; i < convertedNum+1; i++ {
+	for i := 1; i < convertedNum+1; i = i+2 {
 		blank := strings.Repeat(" ", (convertedNum-i)/2)
 		stars := strings.Repeat("*", i)
 		fmt.Println(blank,stars,blank)
-		i += 1
 	}
-	for i := convertedNum-2; i > 0; i-- {
+	for i := convertedNum-2; i > 0; i = i-2 {
 		blank := strings.Repeat(" ", (convertedNum-i)/2)
 		stars := strings.Repeat("*", i)
 		fmt.Println(blank,stars,blank)
-		i -= 1
 	}
 }
