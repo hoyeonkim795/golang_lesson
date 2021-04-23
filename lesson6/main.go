@@ -22,7 +22,6 @@ func main() {
 		}
 	}
 
-
 	rightInput = false
 	var num string
 	for !rightInput {
@@ -32,23 +31,22 @@ func main() {
 		if err != nil {
 			continue
 		}
-		switch {
-		case pattern == "1":
+		rightInput = true
+		switch pattern{
+		case "1":
 			triangle(convertedNum)
-			rightInput = true
-		case pattern == "2" && convertedNum%2 == 1:
-			diamond(convertedNum)
-			rightInput = true
-		case pattern == "3":
-			parallelogram(convertedNum)
-			rightInput = true
-		case pattern == "4":
-			obliqueTriangle(convertedNum)
-			rightInput = true
-		default:
+		case "2":
+			if convertedNum%2 == 1 {
+				diamond(convertedNum)
+				continue
+			}
+			rightInput = false
 			fmt.Println("다이아몬드 패턴을 선택했을 경우 라인의 수는 홀수 여야 합니다.")
+		case "3":
+			parallelogram(convertedNum)
+		case "4":
+			obliqueTriangle(convertedNum)
 		}
-
 	}
 }
 
@@ -58,11 +56,9 @@ func triangle(convertedNum int) {
 		stars := strings.Repeat("*", i)
 		fmt.Println(stars)
 	}
-
 }
 
 func diamond(convertedNum int)  {
-
 	fmt.Println("다이아몬드 패턴입니다.")
 	for i := 1; i < convertedNum+1; i = i+2 {
 		blank := strings.Repeat(" ", (convertedNum-i)/2)
