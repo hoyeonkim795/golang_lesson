@@ -9,7 +9,7 @@ import (
 func main() {
 	var pattern string
 	rightInput := false
-	for !rightInput{
+	for !rightInput {
 		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
 		fmt.Print("원하는 패턴에 해당하는 번호를 입력하세요: ")
 		fmt.Scanln(&pattern)
@@ -22,21 +22,21 @@ func main() {
 		}
 	}
 
+
 	rightInput = false
 	var num string
-	for !rightInput{
+	for !rightInput {
 		fmt.Print("라인 수를 입력하세요 :")
 		fmt.Scan(&num)
-
-		switch convertedNum, err:= strconv.Atoi(num); err == nil{
-		case convertedNum < 1:
-			fmt.Println("0보다 큰 숫자를 입력하세요")
-		case pattern == "2" && convertedNum % 2 == 0:
-			fmt.Println("다이아몬드 패턴을 선택했을 경우 라인의 수는 홀수 여야 합니다.")
+		convertedNum, err := strconv.Atoi(num)
+		if err != nil {
+			continue
+		}
+		switch {
 		case pattern == "1":
 			triangle(convertedNum)
 			rightInput = true
-		case pattern == "2":
+		case pattern == "2" && convertedNum%2 == 1:
 			diamond(convertedNum)
 			rightInput = true
 		case pattern == "3":
@@ -45,7 +45,10 @@ func main() {
 		case pattern == "4":
 			obliqueTriangle(convertedNum)
 			rightInput = true
+		default:
+			fmt.Println("다이아몬드 패턴을 선택했을 경우 라인의 수는 홀수 여야 합니다.")
 		}
+
 	}
 }
 
@@ -59,6 +62,7 @@ func triangle(convertedNum int) {
 }
 
 func diamond(convertedNum int)  {
+
 	fmt.Println("다이아몬드 패턴입니다.")
 	for i := 1; i < convertedNum+1; i = i+2 {
 		blank := strings.Repeat(" ", (convertedNum-i)/2)
