@@ -11,32 +11,13 @@ func main() {
 	var diamondPattern string
 	rightInput := false
 	for !rightInput {
-		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4, 연속된 다이아몬드는 5")
+		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
 		fmt.Print("원하는 패턴에 해당하는 번호를 입력하세요: ")
 		fmt.Scanln(&pattern)
 
 		switch pattern {
 		case "1", "2", "3", "4" :
 			rightInput = true
-		case "5":
-			for !rightInput{
-				fmt.Println("두 번 연속 다이아몬드는 2, 세번 연속 다이아몬드는 3")
-				fmt.Print("입력 조건에 맞게 원하는 번호를 입력하세요:")
-				fmt.Scanln(&diamondPattern)
-				err, convertedDiamondPattern:= checkRightInput(diamondPattern)
-				if err != nil {
-					continue
-				}
-				rightInput = true
-				switch convertedDiamondPattern {
-				case 2:
-					pattern = "5"
-				case 3:
-					pattern = "6"
-				default:
-					rightInput = false
-				}
-			}
 		default:
 			fmt.Println("1,2,3,4,5 중에 입력하셔야 합니다.")
 		}
@@ -52,7 +33,7 @@ func main() {
 			continue
 		}
 		rightInput = true
-		switch pattern{
+		switch pattern {
 		case "1":
 			triangle(convertedNum)
 		case "2":
@@ -60,24 +41,20 @@ func main() {
 				rightInput = false
 				continue
 			}
-			diamond(convertedNum)
+			for {
+				fmt.Print("pattern count 를 입력하세요. :")
+				fmt.Scanln(&diamondPattern)
+				err, patternCount:= checkRightInput(diamondPattern)
+				if err != nil {
+					continue
+				}
+				diamond(convertedNum, patternCount)
+				break
+			}
 		case "3":
 			parallelogram(convertedNum)
 		case "4":
 			obliqueTriangle(convertedNum)
-		case "5":
-			if !diamondLineInput(convertedNum) {
-				rightInput = false
-				continue
-			}
-			twiceDiamond(convertedNum)
-		case "6":
-			if !diamondLineInput(convertedNum) {
-				rightInput = false
-				continue
-			}
-			tripleDiamond(convertedNum)
-
 		}
 	}
 
@@ -106,16 +83,18 @@ func diamondLineInput(convertedNum int) bool {
 }
 
 
-func diamond(convertedNum int) {
-	for i := 1; i < convertedNum+1; i = i+2 {
-		blank := strings.Repeat(" ", (convertedNum-i)/2)
-		stars := strings.Repeat("*", i)
-		fmt.Println(blank,stars,blank)
-	}
-	for i := convertedNum-2; i > 0; i = i-2 {
-		blank := strings.Repeat(" ", (convertedNum-i)/2)
-		stars := strings.Repeat("*", i)
-		fmt.Println(blank,stars,blank)
+func diamond(convertedNum int, patternCount int) {
+	for j := patternCount - 1; j > -1; j-- {
+		for i := 1; i < convertedNum+1; i = i+2 {
+			blank := strings.Repeat(" ", (convertedNum-i)/2)
+			stars := strings.Repeat("*", i)
+			fmt.Println(blank,stars,blank)
+		}
+		for i := convertedNum-2; i > j; i = i-2 {
+			blank := strings.Repeat(" ", (convertedNum-i)/2)
+			stars := strings.Repeat("*", i)
+			fmt.Println(blank,stars,blank)
+		}
 	}
 }
 
@@ -132,35 +111,5 @@ func obliqueTriangle(convertedNum int) {
 		blank := strings.Repeat(" ", i-1)
 		stars := strings.Repeat("*", i)
 		fmt.Println(blank, stars)
-	}
-}
-
-func twiceDiamond(convertedNum int) {
-	for j := 1; j > -1; j-- {
-		for i := 1; i < convertedNum+1; i = i+2 {
-			blank := strings.Repeat(" ", (convertedNum-i)/2)
-			stars := strings.Repeat("*", i)
-			fmt.Println(blank,stars,blank)
-		}
-		for i := convertedNum-2; i > j; i = i-2 {
-			blank := strings.Repeat(" ", (convertedNum-i)/2)
-			stars := strings.Repeat("*", i)
-			fmt.Println(blank,stars,blank)
-		}
-	}
-}
-
-func tripleDiamond(convertedNum int) {
-	for j := 2; j > -1; j-- {
-		for i := 1; i < convertedNum+1; i = i+2 {
-			blank := strings.Repeat(" ", (convertedNum-i)/2)
-			stars := strings.Repeat("*", i)
-			fmt.Println(blank,stars,blank)
-		}
-		for i := convertedNum-2; i > j; i = i-2 {
-			blank := strings.Repeat(" ", (convertedNum-i)/2)
-			stars := strings.Repeat("*", i)
-			fmt.Println(blank,stars,blank)
-		}
 	}
 }
