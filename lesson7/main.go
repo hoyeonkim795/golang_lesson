@@ -8,7 +8,6 @@ import (
 
 func main() {
 	var pattern string
-	var diamondPattern string
 	rightInput := false
 	for !rightInput {
 		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
@@ -22,43 +21,42 @@ func main() {
 			fmt.Println("1,2,3,4,5 중에 입력하셔야 합니다.")
 		}
 	}
+
 	rightInput = false
-	var num string
 	for !rightInput {
-		fmt.Print("라인 수를 입력하세요 :")
-		fmt.Scan(&num)
-		err, convertedNum := checkRightInput(num)
-		if err != nil {
-			fmt.Println("숫자를 입력하세요")
-			continue
-		}
+		convertedNum := askInput("라인의 수를 입력하세요 :")
 		rightInput = true
 		switch pattern {
 		case "1":
 			triangle(convertedNum)
 		case "2":
-			if !diamondLineInput(convertedNum) {
+			if convertedNum %2 == 0 {
+				fmt.Println("다이아몬드는 홀수 라인만 입력할 수 있습니다.")
 				rightInput = false
 				continue
 			}
-			for {
-				fmt.Print("pattern count 를 입력하세요. :")
-				fmt.Scanln(&diamondPattern)
-				err, patternCount:= checkRightInput(diamondPattern)
-				if err != nil {
-					continue
-				}
-				diamond(convertedNum, patternCount)
-				break
-			}
+			patternCount := askInput("pattern count 를 입력하세요")
+			diamond(convertedNum, patternCount)
 		case "3":
 			parallelogram(convertedNum)
 		case "4":
 			obliqueTriangle(convertedNum)
 		}
 	}
+}
 
-
+func askInput(question string) int{
+	var input string
+	for {
+		fmt.Print(question)
+		fmt.Scanln(&input)
+		err, convertedNum := checkRightInput(input)
+		if err != nil {
+			fmt.Println("입력 조건에 맞는 값을 입력해 주세요.")
+			continue
+		}
+		return convertedNum
+	}
 }
 
 func checkRightInput(num string) (error, int){
