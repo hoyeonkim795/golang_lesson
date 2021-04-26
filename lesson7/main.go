@@ -13,12 +13,11 @@ func main() {
 		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
 		fmt.Print("원하는 패턴에 해당하는 번호를 입력하세요: ")
 		fmt.Scanln(&pattern)
-
 		switch pattern {
 		case "1", "2", "3", "4" :
 			rightInput = true
 		default:
-			fmt.Println("1,2,3,4,5 중에 입력하셔야 합니다.")
+			fmt.Println("1,2,3,4 중에 입력하셔야 합니다.")
 		}
 	}
 
@@ -30,9 +29,8 @@ func main() {
 		case "1":
 			triangle(convertedNum)
 		case "2":
-			if convertedNum %2 == 0 {
-				fmt.Println("다이아몬드는 홀수 라인만 입력할 수 있습니다.")
-				rightInput = false
+			rightInput = diamondLineInput(convertedNum)
+			if !rightInput{
 				continue
 			}
 			patternCount := askInput("pattern count 를 입력하세요")
@@ -48,10 +46,10 @@ func main() {
 func askInput(question string) int{
 	var input string
 	for {
-		fmt.Print(question)
+		fmt.Print("range(1~100) ", question)
 		fmt.Scanln(&input)
 		err, convertedNum := checkRightInput(input)
-		if err != nil {
+		if err != nil || convertedNum < 1 || convertedNum > 100{
 			fmt.Println("입력 조건에 맞는 값을 입력해 주세요.")
 			continue
 		}
@@ -88,12 +86,15 @@ func diamond(convertedNum int, patternCount int) {
 			stars := strings.Repeat("*", i)
 			fmt.Println(blank,stars,blank)
 		}
-		for i := convertedNum-2; i > j; i = i-2 {
+		for i := convertedNum-2; i > 1; i = i-2 {
 			blank := strings.Repeat(" ", (convertedNum-i)/2)
 			stars := strings.Repeat("*", i)
 			fmt.Println(blank,stars,blank)
 		}
 	}
+	blank := strings.Repeat(" ", (convertedNum-1)/2)
+	stars := strings.Repeat("*",1)
+	fmt.Println(blank,stars,blank)
 }
 
 func parallelogram(convertedNum int)  {
