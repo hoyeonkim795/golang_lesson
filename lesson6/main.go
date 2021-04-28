@@ -29,6 +29,7 @@ func main() {
 		fmt.Scan(&num)
 		convertedNum, err := strconv.Atoi(num)
 		if err != nil {
+			fmt.Println("숫자를 입력하세요")
 			continue
 		}
 		rightInput = true
