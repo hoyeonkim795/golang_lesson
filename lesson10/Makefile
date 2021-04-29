@@ -1,9 +1,14 @@
+all: clean run
 build:
-	go build main.go
+	@echo "executed build!"
+	@go build main.go
+	@#mv main lesson
 
 clean:
-	if [ -e "./main" ]; then rm "./main"; else echo "File does not exist"; fi
+	@echo "executed clean!"
+	@if [ -e "./main" ]; then rm -f "../main"; else echo "File does not exist"; fi
 
-run:
-	if [ -e "./main" ]; then ./main; else go build main.go; ./main; fi
+run: build
+	@echo "executed run!"
+	@./main
 
