@@ -1,6 +1,8 @@
 package input
 
-import "strings"
+import (
+	"strings"
+)
 
 func exitInput(input string) bool{
 	switch strings.ToUpper(input) {
@@ -10,3 +12,4 @@ func exitInput(input string) bool{
 		return false
 	}
 }
+

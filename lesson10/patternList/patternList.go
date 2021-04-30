@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func Triangle(lineCount int) {
+func Triangle(lineCount int, patternCount int) {
 	for i := lineCount; i > 0; i-- {
 		stars := strings.Repeat("*", i)
 		fmt.Println(stars)
@@ -29,7 +29,7 @@ func Diamond(lineCount int, patternCount int) {
 	fmt.Println(blank,stars,blank)
 }
 
-func Parallelogram(lineCount int)  {
+func Parallelogram(lineCount int, patternCount int)  {
 	for i :=lineCount -1; i > -1; i-- {
 		blank := strings.Repeat(" ", i)
 		stars := strings.Repeat("*", lineCount)
@@ -37,7 +37,7 @@ func Parallelogram(lineCount int)  {
 	}
 }
 
-func ObliqueTriangle(lineCount int) {
+func ObliqueTriangle(lineCount int, patternCount int) {
 	for i :=lineCount ; i > 0; i-- {
 		blank := strings.Repeat(" ", i-1)
 		stars := strings.Repeat("*", i)
