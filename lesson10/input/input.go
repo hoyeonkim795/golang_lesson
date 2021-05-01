@@ -23,9 +23,9 @@ func PrintPattern(pattern int, lineCount int, patternCount int) bool{
 		}
 		fmt.Println(patternList.Diamond(lineCount, patternCount))
 	case 3:
-		patternList.Parallelogram(lineCount, patternCount)
+		fmt.Println(patternList.Parallelogram(lineCount, patternCount))
 	case 4:
-		patternList.ObliqueTriangle(lineCount, patternCount)
+		fmt.Println(patternList.ObliqueTriangle(lineCount, patternCount))
 	}
 	return true
 }
