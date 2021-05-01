@@ -9,10 +9,10 @@ import (
 
 func main() {
 	var (
-		checkExit bool
-		pattern int
+		isValid bool
+		patternNum int
 		lineCount int
-		patternCount int
+		repeatCount int
 	)
 	//signal handle
 	sig := exit.SignalHandle()
@@ -21,31 +21,35 @@ func main() {
 	for {
 		// 패턴 입력받기
 		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
-		pattern, checkExit = input.GetInput("원하는 패턴에 해당하는 번호를 입력하세요:",1,4)
-		// 입력한 pattern값이 종료 명령어 인지 확인
-		if checkExit{
+		patternNum, isValid = input.GetValidInput("원하는 패턴에 해당하는 번호를 입력하세요:",1,4)
+		// 입력한 patternNum값이 종료 명령어 인지 확인
+		if !isValid{
 			break
 		}
-		// patterncount 입력 받기
-		patternCount, checkExit = input.PatternCount(pattern)
-		// 입력한 patterncount가 종료 명령어 인지 확인
-		if checkExit{
-			break
-		}
-		// linecount 입력받기
-		for {
-			lineCount, checkExit = input.GetInput("라인의 수를 입력하세요 :",1,100)
-			if checkExit {
-				break
-			}
-			if input.PrintPattern(pattern, lineCount, patternCount) {
-				break
-			}
-		}
-		if checkExit {
+		// 패턴 반복 횟수 (repeatCount) 입력 받기
+		repeatCount, isValid = input.GetPatternRepeatCount(patternNum)
+		// 입력한 patternNumcount가 종료 명령어 인지 확인
+		if !isValid{
 			break
 		}
 
+		switch patternNum {
+		case 2:
+			for {
+				lineCount, isValid = input.GetValidInput("라인의 수를 입력하세요 :",1,100)
+				if input.IsValidDiamondLineCount(lineCount) {
+					break
+				}
+			}
+		default:
+			lineCount, isValid = input.GetValidInput("라인의 수를 입력하세요 :",1,100)
+		}
+
+		if !isValid{
+			break
+		}
+
+		input.PrintPattern(patternNum, lineCount, repeatCount)
 	}
 }
 
