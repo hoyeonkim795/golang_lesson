@@ -3,6 +3,7 @@ package main
 import (
 	"./exit"
 	"./input"
+	"./print"
 	"fmt"
 )
 
@@ -49,7 +50,7 @@ func main() {
 			break
 		}
 
-		input.PrintPattern(patternNum, lineCount, repeatCount)
+		print.PrintPattern(patternNum, lineCount, repeatCount)
 	}
 }
 
