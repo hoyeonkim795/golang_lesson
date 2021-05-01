@@ -7,7 +7,7 @@ import (
 )
 func PatternCount(pattern int) (int, bool){
 	if pattern == 2 {
-		patternCount, checkExit := AskInput("다이아몬드 패턴 카운트를 입력하세요",1,100)
+		patternCount, checkExit := GetInput("다이아몬드 패턴 카운트를 입력하세요",1,100)
 		return patternCount, checkExit
 	}
 	return 1,false
@@ -16,12 +16,12 @@ func PatternCount(pattern int) (int, bool){
 func PrintPattern(pattern int, lineCount int, patternCount int) bool{
 	switch pattern {
 	case 1:
-		patternList.Triangle(lineCount, patternCount )
+		fmt.Println(patternList.Triangle(lineCount, patternCount ))
 	case 2:
 		if !isValidDiamondLineCount(lineCount){
 			return false
 		}
-		patternList.Diamond(lineCount, patternCount)
+		fmt.Println(patternList.Diamond(lineCount, patternCount))
 	case 3:
 		patternList.Parallelogram(lineCount, patternCount)
 	case 4:
@@ -38,7 +38,7 @@ func isValidDiamondLineCount(lineCount int) bool{
 	return true
 }
 
-func AskInput(question string, startRange int, endRange int) (int,bool){
+func GetInput(question string, startRange int, endRange int) (int,bool){
 	var input string
 	for {
 		fmt.Print("range(",startRange,"~",endRange, ") ", question)
