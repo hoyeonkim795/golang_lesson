@@ -1,20 +1,21 @@
 package print
 
 import (
+	"../config"
 	"../patternList"
 	"fmt"
 )
 
-func PrintPattern(patternNum int, lineCount int, repeatCount int) bool{
+func Pattern(patternNum int, lineCount int, repeatCount int) bool{
 	switch patternNum {
-	case 1:
-		fmt.Println(patternList.Triangle(lineCount, repeatCount ))
-	case 2:
+	case config.ReverseTriangle:
+		fmt.Println(patternList.Triangle(lineCount))
+	case config.Diamond:
 		fmt.Println(patternList.Diamond(lineCount, repeatCount))
-	case 3:
-		fmt.Println(patternList.Parallelogram(lineCount, repeatCount))
-	case 4:
-		fmt.Println(patternList.ObliqueTriangle(lineCount, repeatCount))
+	case config.Parallelogram:
+		fmt.Println(patternList.Parallelogram(lineCount))
+	case config.ObliqueTriangle:
+		fmt.Println(patternList.ObliqueTriangle(lineCount))
 	}
 	return true
 }
