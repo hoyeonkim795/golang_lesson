@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func Triangle(lineCount int) string{
+func ReversedTriangle(lineCount int) string{
 	var resultPattern bytes.Buffer
 	for lineCountIdx := lineCount; lineCountIdx > 0; lineCountIdx-- {
 		stars := strings.Repeat(config.Star, lineCountIdx)

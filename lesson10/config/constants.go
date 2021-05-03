@@ -1,7 +1,7 @@
 package config
 
 const (
-	ReverseTriangle = 1
+	ReversedTriangle = 1
 	Diamond = 2
 	Parallelogram = 3
 	ObliqueTriangle = 4
