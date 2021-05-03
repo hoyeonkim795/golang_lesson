@@ -24,11 +24,11 @@ func main() {
 		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
 		patternNum, isValid = input.GetValidInput("원하는 패턴에 해당하는 번호를 입력하세요:",config.PatternNumStartRange,config.PatternNumEndRange)
 		if !isValid{
-			break
+			return
 		}
 		repeatCount, isValid = input.GetPatternRepeatCount(patternNum)
 		if !isValid{
-			break
+			return
 		}
 
 		// if else ?
@@ -45,7 +45,7 @@ func main() {
 		}
 
 		if !isValid{
-			break
+			return
 		}
 
 		print.Pattern(patternNum, lineCount, repeatCount)
