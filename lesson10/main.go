@@ -37,10 +37,6 @@ func main() {
 					break
 				}
 			}
-		case config.PrintPatternStep:
-			print.Pattern(patternNum, lineCount, repeatCount)
-			step = config.InputPatternNumStep
-			continue
 		}
 
 		if !isValid{
@@ -49,6 +45,12 @@ func main() {
 
 		step += config.NextStep
 
+		switch step {
+		case config.PrintPatternStep:
+			print.Pattern(patternNum, lineCount, repeatCount)
+			step = config.InputPatternNumStep
+			continue
+		}
 	}
 }
 
