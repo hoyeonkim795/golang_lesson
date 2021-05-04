@@ -19,36 +19,36 @@ func main() {
 
 	sig := exit.SignalHandle()
 	go exit.Interrupt(sig)
+	step := config.InputPatternNumStep
 
 	for {
-		fmt.Println("역직삼각형은 1, 다이아몬드는 2, 평행사변형은 3, 기울어진 삼각형은 4")
-		patternNum, isValid = input.GetValidInput("원하는 패턴에 해당하는 번호를 입력하세요:",config.PatternNumStartRange,config.PatternNumEndRange)
-		if !isValid{
-			return
-		}
-		repeatCount, isValid = input.GetPatternRepeatCount(patternNum)
-		if !isValid{
-			return
-		}
-
-		// if else ?
-		switch patternNum {
-		case config.Diamond:
+		switch step{
+		case config.InputPatternNumStep :
+			fmt.Println(config.PatternNumGuide)
+			patternNum, isValid = input.GetValidInput(config.PatternNumInputGuide,config.PatternNumStartRange,config.PatternNumEndRange)
+		case config.InputPatternRepeatCountStep:
+			repeatCount, isValid = input.GetPatternRepeatCount(patternNum)
+		case config.InputLineCountStep:
 			for {
-				lineCount, isValid = input.GetValidInput("라인의 수를 입력하세요 :",config.InputStartRange,config.InputEndRange)
-				if input.IsValidDiamondLineCount(lineCount) {
+				lineCount, isValid = input.GetValidInput(config.LineCountInputGuide,config.InputStartRange,config.InputEndRange)
+				if patternNum == config.Diamond && !input.IsValidDiamondLineCount(lineCount) {
+					continue
+				}	else {
 					break
 				}
 			}
-		default:
-			lineCount, isValid = input.GetValidInput("라인의 수를 입력하세요 :",config.InputStartRange,config.InputEndRange)
+		case config.PrintPatternStep:
+			print.Pattern(patternNum, lineCount, repeatCount)
+			step = config.InputPatternNumStep
+			continue
 		}
 
 		if !isValid{
 			return
 		}
 
-		print.Pattern(patternNum, lineCount, repeatCount)
+		step += config.NextStep
+
 	}
 }
 
