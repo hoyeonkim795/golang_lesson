@@ -42,7 +42,6 @@ func main() {
 		if !isValid{
 			return
 		}
-
 		step += config.NextStep
 
 		switch step {
