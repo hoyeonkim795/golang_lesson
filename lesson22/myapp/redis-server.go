@@ -15,17 +15,15 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+		return c.String(http.StatusOK, "hello world")
 	})
-
-	e.POST("/save", save)
-
+	e.POST("/:key/:value", post)
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
-func save(c echo.Context) error {
-	key := c.FormValue("key")
-	value := c.FormValue("value")
+func post(c echo.Context) error {
+	key := c.Param("key")
+	value := c.Param("value")
 	ExampleClient(key, value)
 	return c.String(http.StatusOK, "key:" + key + ", value:" + value)
 }
