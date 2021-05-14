@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./config"
 	"./exit"
-	"./input"
-	"./print"
+	"lesson10/input"
+	"lesson10/print"
+	"lesson10/config"
 	"fmt"
 )
 
