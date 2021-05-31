@@ -1,6 +1,6 @@
 run:
 	@echo "run server!"
-	@go run redis-server.go
+	@go run main.go
 show redis:
 	@echo "This is redis cli!"
 	@redis-cli

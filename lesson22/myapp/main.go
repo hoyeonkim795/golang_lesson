@@ -7,6 +7,7 @@ import (
 
 func main() {
 	e := echo.New()
+
 	e.GET("/", api.Get)
 	e.POST("/:key/:value", api.Post)
 	e.Logger.Fatal(e.Start(":1323"))

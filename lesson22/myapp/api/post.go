@@ -7,8 +7,9 @@ import (
 )
 
 func Post(c echo.Context) error {
+
 	key := c.Param("key")
 	value := c.Param("value")
-	redis.ExampleClient(key, value)
+	redis.Client(key, value)
 	return c.String(http.StatusOK, "key:" + key + ", value:" + value)
 }
