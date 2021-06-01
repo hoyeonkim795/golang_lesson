@@ -2,7 +2,7 @@
 
 ## Redis Installation
   - https://github.com/go-redis/redis
-  - 6379 port에 Redis 연결
+  - Redis port : 6379 
   - ```bash
     $ go mod init github.com/my/repo
     $ go get github.com/go-redis/redis/v8
