@@ -33,16 +33,15 @@ func Client(key string, value string) {
 
 - path 로 전달되는 파라미터를 획득 (https://lejewk.github.io/go-echo-request-param/)
 - 넘겨준 파라미터 (key, value)를 작성한 `ExampleClient`로 넘김
-- ```go
+```go
     func Post(c echo.Context) error {
     
 	    key := c.Param("key")
 	    value := c.Param("value")
 	    redis.Client(key, value)
 	    return c.String(http.StatusOK, "key:" + key + ", value:" + value)
-    }   
-    
-    ```
+    }
+```
 
 ## Makefile
 
@@ -91,6 +90,5 @@ $ http POST locallhost:1323/bella/spoon
    $ make show redis
    $ get bella
    ```
-
-    														![redis](./img/redis.png)
+   ![redis](./img/redis.png)
 
