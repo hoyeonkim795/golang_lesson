@@ -1,7 +1,7 @@
 package input
 
 import (
-	"../config"
+	"myapp10/config"
 	"fmt"
 	"strconv"
 )

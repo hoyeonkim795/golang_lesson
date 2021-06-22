@@ -1,10 +1,9 @@
 package main
 
 import (
-	"./exit"
-	"lesson10/input"
-	"lesson10/print"
-	"lesson10/config"
+	"myapp10/config"
+	"myapp10/input"
+	"myapp10/exit"
 	"fmt"
 )
 
@@ -16,7 +15,6 @@ func main() {
 		lineCount int
 		repeatCount int
 	)
-
 	sig := exit.SignalHandle()
 	go exit.Interrupt(sig)
 	step := config.InputPatternNumStep

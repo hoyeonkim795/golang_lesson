@@ -1,7 +1,7 @@
 package patternList
 
 import (
-	"../config"
+	"myapp10/config"
 	"bytes"
 	"strings"
 )
