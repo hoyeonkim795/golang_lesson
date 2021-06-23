@@ -1,6 +1,6 @@
 # Redis 랭킹 처리
 
-## Requirments
+## Requirements
 
 - Redis 연동하기 2와 비슷한 패턴 활용으로 신규 기능을 추가한다.
 - 신규 기능은 랭킹 처리 기능이다.
@@ -132,7 +132,7 @@ func ClientGetRankList(start int64, stop int64) (*Leaderboard, error){
 		users[idx] = &config.User{
 			Username: member.Member.(string),
 			Points: int(member.Score),
-			Rank: idx,
+      Rank: idx+int(start),
 		}
 	}
 	leaderboard := &Leaderboard{
