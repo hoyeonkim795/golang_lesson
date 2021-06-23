@@ -68,6 +68,7 @@ func ClientGetRankList(start int64, stop int64) (*Leaderboard, error){
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	scores := client.ZRangeWithScores(ctx, "ranking", start, stop)
 	if scores == nil {
 		return nil, error(nil)
@@ -78,7 +79,7 @@ func ClientGetRankList(start int64, stop int64) (*Leaderboard, error){
 		users[idx] = &config.User{
 			Username: member.Member.(string),
 			Points: int(member.Score),
-			Rank: idx,
+			Rank: idx+int(start),
 		}
 	}
 	leaderboard := &Leaderboard{
