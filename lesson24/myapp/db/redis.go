@@ -38,14 +38,6 @@ func ClientSetRank(user *config.User) {
 		Score: float64(user.Points),
 		Member: user.Username,
 	}
-	//pipe := client.TxPipeline()
-	//pipe.ZAdd(ctx,"leader", member)
-	//rank := pipe.ZRank(ctx, "leader", user.Username)
-	//_, err = pipe.Exec(ctx)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
-	//user.Rank = int(rank.Val())
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -57,8 +49,6 @@ func ClientGetRank(username string) int64 {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//pipe := client.TxPipeline()
-	//rank, _ := pipe.ZRank(ctx, "leader", username).Result()
 	rank,_ := client.ZRank(ctx, "ranking", username).Result()
 	return rank
 }
