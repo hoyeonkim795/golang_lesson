@@ -1,5 +1,13 @@
 # Redis 랭킹 처리
 
+## Requirments
+
+- Redis 연동하기 2와 비슷한 패턴 활용으로 신규 기능을 추가한다.
+- 신규 기능은 랭킹 처리 기능이다.
+  - Redis의 Sorted Set을 활용하여 랭킹처리를 위한 get/set RESTful API를 구현한다.
+  - get할 때, 랭킹의 범위를 함께 가져올 수 있도록 해야한다.
+    - ex) GET rank/range/50   =>.  1 ~ 50 
+
 ## Main
 
 ```go
